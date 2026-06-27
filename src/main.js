@@ -1,5 +1,35 @@
 import Phaser from "phaser";
+import { Capacitor } from "@capacitor/core";
+import {
+  AdMob,
+  BannerAdPosition,
+  BannerAdSize,
+} from "@capacitor-community/admob";
 import "./style.css";
+
+async function initializeAdMob() {
+  if (!Capacitor.isNativePlatform()) return;
+  if (!Capacitor.isPluginAvailable("AdMob")) return;
+
+  try {
+    // Delay banner setup so Phaser can finish first render on iOS.
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    await AdMob.initialize({
+      initializeForTesting: false,
+    });
+
+    await AdMob.showBanner({
+      adId: "ca-app-pub-5664448531890756/2256893596",
+      adSize: BannerAdSize.BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      isTesting: false,
+    });
+  } catch (error) {
+    console.warn("AdMob initialization failed:", error);
+  }
+}
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -804,3 +834,4 @@ const config = {
 };
 
 new Phaser.Game(config);
+initializeAdMob();
