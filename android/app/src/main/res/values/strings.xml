@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cute Dragon Blaster</string>
+    <string name="title_activity_main">Cute Dragon Blaster</string>
+    <string name="package_name">com.infinityknowledge.dragonBlaster</string>
+    <string name="custom_url_scheme">com.infinityknowledge.dragonBlaster</string>
+    <string name="admob_app_id">ca-app-pub-5664448531890756~8361769968</string>
+</resources>
